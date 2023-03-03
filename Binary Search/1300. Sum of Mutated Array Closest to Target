@@ -1,0 +1,113 @@
+class Solution {
+public:
+  
+  //  Gajanan Code
+  int roundfig(int num,int n){
+        int i=num/n;
+        float f=(float(num))/n;
+        if(f > float(i)+0.5){
+            return i+1;
+        }
+        return i;
+    }
+    int findBestValue(vector<int>& arr, int target) {
+        int n=arr.size();
+        int sum=0;
+        sort(arr.begin(),arr.end());
+        int i=0;
+        while(i<n && target>(n-i)*arr[i]){
+            target=target-arr[i];
+            i++;
+        }
+
+        if(i==n){
+            return arr[n-1];
+        }
+        else{
+            return roundfig(target,n-i);
+        }
+    }
+  
+  
+  
+//     int findBestValue(vector<int>& arr, int target) {
+//       sort(arr.begin(), arr.end());
+//       int n=arr.size();  
+//       vector<int>preSum(n);
+//       preSum[0]=0;
+//       for(int i=1; i<n; i++){
+//         preSum[i]=preSum[i-1]+arr[i-1];
+//       }
+//       int totalSum=arr[n-1]+preSum[n-1];
+//       int diff = INT_MAX;
+//       int ans ;
+//       int start=0, end=n-1, minI=0, maxI=n-1, x;
+//       x=arr[0]*n;
+    
+//       if(x>target){
+//         ans = target/n;
+//         float m=target;
+//         float f = m/n;
+//         int i = m/n;
+        
+//         if(float(i+0.5) < f){
+//           return i+1;
+//         }
+//         else 
+//           return i;
+//       }
+//       while(start < end){
+//         int mid=(start+end)/2;
+//         x=preSum[mid]+(n-mid)*arr[mid];
+//         if(abs(x-target==diff)){
+//           ans=min(arr[mid], ans);
+//         }
+//         else if(abs(x-target)<diff){
+//           ans = arr[mid];
+//           diff=abs(x-target);
+//           if(target==x)
+//             return arr[mid];
+//           else if(target < x){
+//             maxI=mid;
+//             end=mid;
+//           }
+//           else{
+//             minI=mid;
+//             start=mid;
+//           }
+//         }
+//         else{
+//           break;
+//         }
+//       }
+      
+//       int low=arr[minI], high=arr[maxI];
+//       int x1= preSum[minI]+(n-minI)*arr[minI];
+//       int x2= preSum[maxI]+(n-maxI)*arr[maxI];
+      
+//       if(abs(target-x1)==abs(target-x2)){
+//         ans=min(arr[minI], arr[maxI]);
+//         diff = abs(target-x1);
+//       }
+//       else if(abs(target-x1) < abs(target-x2)){
+//         ans=arr[minI];
+//         diff=abs(target-x1);
+//       }
+//       else{
+//         ans=arr[maxI];
+//         diff=abs(target-x2);
+//       }
+//       for(int i=low+1; i<high; i++){
+//         int temp=preSum[maxI]+(n-maxI)*i;
+//         if(abs(target-temp)==diff){
+//           ans=min(ans,i);
+//           diff = abs(target-temp);
+//         }
+//         else if(abs(target-temp)<diff){
+//           diff = abs(target-temp);
+//           ans = i;
+//         }
+//       }
+//       return ans;
+    // }
+};
